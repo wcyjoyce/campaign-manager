@@ -1,0 +1,2 @@
+# Instructs git not to commit "node_modules"
+node_modules

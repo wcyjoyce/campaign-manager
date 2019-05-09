@@ -14,4 +14,8 @@ app.get("/", (req, res) => {
 });
 
 // Instructs Express to tell Node to listen to incoming traffic on Port 5000
-app.listen(5000);
+// app.listen(5000);
+
+// Heroku setup: identifies which port that Heroku has assigned; otherwise (if in development mode, assign to port 5000)
+const PORT = process.env.PORT || 5000;
+app.listen(PORT);
