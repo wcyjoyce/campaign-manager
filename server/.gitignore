@@ -1,2 +1,3 @@
-# Instructs git not to commit "node_modules"
+# Instructs git not to commit the below files
 node_modules
+keys.js
