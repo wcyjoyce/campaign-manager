@@ -1,7 +1,12 @@
 // Generating Express apps
 const express = require("express"); // imports Express package
+const mongoose = require("mongoose");
+const keys = require("./config/keys.js");
 require("./services/passport.js");
 // const authRoutes = require("./routes/authRoutes.js");
+
+// Connecting Mongoose to MongoDB
+mongoose.connect(keys.mongoURI);
 
 // Initiates a new Express app
 const app = express();
@@ -19,8 +24,6 @@ require("./routes/authRoutes.js")(app);
 app.get("/", (req, res) => {
   res.send({ hi: "there" });
 });
-
-mongoose.connect(keys.mongoURI);
 
 // Heroku setup: identifies which port that Heroku has assigned; otherwise (if in development mode, assign to port 5000)
 const PORT = process.env.PORT || 5000;
