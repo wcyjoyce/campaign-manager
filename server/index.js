@@ -1,7 +1,9 @@
 // Generating Express apps
 const express = require("express"); // imports Express package
 const mongoose = require("mongoose");
+
 const keys = require("./config/keys.js");
+require("./models/user.js");
 require("./services/passport.js");
 // const authRoutes = require("./routes/authRoutes.js");
 
