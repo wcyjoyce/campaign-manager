@@ -16,7 +16,17 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       console.log("profile:", profile);
-      new User({ googleId: profile.id }).save();
+
+      // searches in User for the first record where googleId === profile.id
+      User.findOne({ googleId: profile.id }).then(existingUser => {
+        if (existingUser) {
+          done(null, existingUser); // no action required as there is an existing record of the given profile ID
+        } else {
+          new User({ googleId: profile.id })
+            .save()
+            .then(user => done(null, user));
+        }
+      })
     }
   )
 );
