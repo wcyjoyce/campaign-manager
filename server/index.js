@@ -1,6 +1,8 @@
 // Generating Express apps
 const express = require("express"); // imports Express package
 const mongoose = require("mongoose");
+const cookieSession = require("cookie-session");
+const passport = require("passport");
 
 const keys = require("./config/keys.js");
 require("./models/user.js");
@@ -12,6 +14,18 @@ mongoose.connect(keys.mongoURI);
 
 // Initiates a new Express app
 const app = express();
+
+// Enabling cookies via Cookie-Session package
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000, // how long the cookie can exist inside the browser before it automatically expires (in millseconds)
+    keys: [keys.cookieKey] // key used to encrypt the cookie
+  })
+);
+
+// Instructs Passport to make use of cookies during user authentication
+app.use(passport.initialize());
+app.use(passport.session());
 
 // authRoutes(app);
 require("./routes/authRoutes.js")(app);

@@ -11,4 +11,8 @@ module.exports = (app) => {
 
   // When user gets redirected to "/auth/google/callback", route handler takes user's request and conducts code exchange
   app.get("/auth/google/callback", passport.authenticate("google"));
-};
+
+  // Testing authentication to ensure that cookies has been set up
+  app.get("/api/current_user", (req, res) => {
+    res.send(req.user);
+  });

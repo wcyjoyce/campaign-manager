@@ -30,3 +30,15 @@ passport.use(
     }
   )
 );
+
+// Serialises the newly generated user (from above function) with some unique identifier and sets cookie
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+// Deserialises user by taking the same unique identifier in cookie and converts it back to a Mongoose model instance
+passport.deserializeUser((id, done) => {
+  User.findById(id).then(user => {
+    done(null, user);
+  });
+});
