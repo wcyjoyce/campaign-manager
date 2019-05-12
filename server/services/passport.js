@@ -12,7 +12,8 @@ passport.use(
     {
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
-      callbackURL: "/auth/google/callback" // route that user is redirected to when he/she grants authorisation
+      callbackURL: "/auth/google/callback", // route that user is redirected to when he/she grants authorisation
+      proxy: true // enables Google to trust proxy and handle callback URL accordingly (ie. HTTP/HTTPS)
     },
     (accessToken, refreshToken, profile, done) => {
       console.log("profile:", profile);
