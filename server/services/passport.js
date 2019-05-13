@@ -15,19 +15,33 @@ passport.use(
       callbackURL: "/auth/google/callback", // route that user is redirected to when he/she grants authorisation
       proxy: true // enables Google to trust proxy and handle callback URL accordingly (ie. HTTP/HTTPS)
     },
-    (accessToken, refreshToken, profile, done) => {
-      console.log("profile:", profile);
 
-      // searches in User for the first record where googleId === profile.id
-      User.findOne({ googleId: profile.id }).then(existingUser => {
-        if (existingUser) {
-          done(null, existingUser); // no action required as there is an existing record of the given profile ID
-        } else {
-          new User({ googleId: profile.id })
-            .save()
-            .then(user => done(null, user));
-        }
-      })
+    // #1: Promise
+    // (accessToken, refreshToken, profile, done) => {
+    //   console.log("profile:", profile);
+
+    //   // searches in User for the first record where googleId === profile.id
+    //   User.findOne({ googleId: profile.id }).then(existingUser => {
+    //     if (existingUser) {
+    //       done(null, existingUser); // no action required as there is an existing record of the given profile ID
+    //     } else {
+    //       new User({ googleId: profile.id })
+    //         .save()
+    //         .then(user => done(null, user));
+    //     }
+    //   })
+    // }
+
+    // #2: Refactoring with Async/Await
+    async (accessToken, refreshToken, profile, done) => {
+      console.log("profile:", profile);
+      const existingUser = await User.findOne({ googleId: profile.id })
+      if (existingUser) {
+        done(null, existingUser);
+      } else {
+        const user = await new User({ googleId: profile.id }).save();
+        done(null, user);
+      }
     }
   )
 );
