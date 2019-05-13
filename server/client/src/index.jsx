@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, combineReducers, applyMiddleware } from "redux";
+import reduxThunk from "redux-thunk";
 
 import "./stylesheets/application.scss";
 import App from "./components/app.jsx";
@@ -12,7 +13,7 @@ const reducers = combineReducers({
   auth: authReducer
 });
 
-const store = createStore(() => reducers, {}, applyMiddleware());
+const store = createStore(() => reducers, {}, applyMiddleware(reduxThunk));
 
 ReactDOM.render(
   <Provider store={store}><App /></Provider>,
