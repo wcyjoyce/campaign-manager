@@ -14,7 +14,7 @@ module.exports = (app) => {
     "/auth/google/callback",
     passport.authenticate("google"),
     (req, res) => {
-      res.redirect("/surveys"); // redirects user to /surveys after signing in
+      res.redirect("/surveys"); // redirects user to surveys route after signing in
     }
   );
 
@@ -26,6 +26,7 @@ module.exports = (app) => {
   // Logging out
   app.get("/api/logout", (req, res) => {
     req.logout();
-    res.send(req.user); // should return empty state as user is now logged out
+    // res.send(req.user); // should return empty state as user is now logged out
+    res.redirect("/"); // redirects user to root path after loggin out
   });
 };
