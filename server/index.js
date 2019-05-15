@@ -3,17 +3,20 @@ const express = require("express"); // imports Express package
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
+const bodyParser = require("body-parser"); // parses requests and returns property called req.body
 
 const keys = require("./config/keys.js");
 require("./models/user.js");
 require("./services/passport.js");
-// const authRoutes = require("./routes/authRoutes.js");
 
 // Connecting Mongoose to MongoDB
 mongoose.connect(keys.mongoURI);
 
 // Initiates a new Express app
 const app = express();
+
+// Passes app into BodyParser middleware
+app.use(bodyParser.json());
 
 // Enabling cookies via Cookie-Session package
 app.use(
@@ -27,8 +30,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// authRoutes(app);
+// Importing Routes
 require("./routes/authRoutes.js")(app);
+require("./routes/stripeRoutes.js")(app);
 
 // Initiating Express route handlers
   // 1) app - new route handlers to be registered to this app
