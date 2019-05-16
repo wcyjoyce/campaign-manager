@@ -1,6 +1,11 @@
 @import "header";
+@import "button";
 
 .content {
   font-family: Helvetica;
   margin: 40px;
+
+  h1 {
+    margin: 15px 0px;
+  }
 }

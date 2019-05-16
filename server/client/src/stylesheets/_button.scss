@@ -1,0 +1,11 @@
+.btn {
+  font-weight: bold;
+
+  .fa {
+    margin-right: 10px;
+  }
+
+  &:first-child {
+    margin-right: 10px;
+  }
+}

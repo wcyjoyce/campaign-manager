@@ -2,4 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  a, a:hover {
+    text-decoration: none;
+
+    h1 {
+      color: black;
+    }
+  }
 }
