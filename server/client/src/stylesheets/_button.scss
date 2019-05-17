@@ -5,7 +5,9 @@
     margin-right: 10px;
   }
 
-  &:first-child {
+  &:first-child, &:nth-child(2) {
     margin-right: 10px;
   }
+
+
 }

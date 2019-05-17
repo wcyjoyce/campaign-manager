@@ -17,6 +17,7 @@ class Header extends Component {
         return (
           <div>
             <Stripe />
+            <div className="btn btn-success">Credits: {this.props.auth.credits}</div>
             <a href="/api/logout" className="btn btn-danger"><i className="fa fa-sign-out" />Sign Out</a>
           </div>
         );
