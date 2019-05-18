@@ -1,12 +1,19 @@
-// import React, { Component } from "react";
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-const Dashboard = () => {
-  return (
-    <div>
-      This is a dashboard.
-    </div>
-  );
+class Dashboard extends Component {
+  render() {
+    return (
+      <div>
+        <h4>Credits: {this.props.auth.credits}</h4>
+        This is a dashboard.
+      </div>
+    );
+  };
 };
 
-export default Dashboard;
+function mapStateToProps(state) {
+  return { auth: state.auth };
+};
+
+export default connect(mapStateToProps)(Dashboard);
