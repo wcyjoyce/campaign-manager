@@ -45,6 +45,15 @@ app.get("/", (req, res) => {
   res.send({ hi: "there" });
 });
 
+// For Heroku: Express will serve up production assets (eg. main.js / main.css), otherwise, index.html will be served
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build")); // Express checks to see if any production assets are on file
+  const path = require("path"); // otherwise, index.html will be served
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+};
+
 // Heroku setup: identifies which port that Heroku has assigned; otherwise (if in development mode, assign to port 5000)
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
