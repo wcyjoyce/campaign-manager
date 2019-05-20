@@ -36,6 +36,7 @@ app.use(passport.session());
 // Importing Routes
 require("./routes/authRoutes.js")(app);
 require("./routes/stripeRoutes.js")(app);
+require("./routes/surveyRoutes.js")(app);
 
 // Initiating Express route handlers
   // 1) app - new route handlers to be registered to this app
