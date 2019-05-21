@@ -6,11 +6,12 @@ const passport = require("passport");
 const bodyParser = require("body-parser"); // parses requests and returns property called req.body
 
 const keys = require("./config/keys.js");
-require("./services/passport.js");
 
 // Importing models
 require("./models/user.js");
 require("./models/survey.js");
+
+require("./services/passport.js");
 
 // Connecting Mongoose to MongoDB
 mongoose.connect(keys.mongoURI);
