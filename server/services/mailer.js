@@ -7,7 +7,7 @@ class Mailer extends helper.Mail {
     super();
 
     this.sendGridApi = sendgrid(keys.sendGridKey);
-    this.from_email = new helper.Email("hello@campaigns-manager.com");
+    this.from_email = new helper.email("hello@campaigns-manager.com");
     this.subject = subject;
     this.body = new helper.Content("text/html", content); // content displayed in HTML format
     this.recipients = this.formatAddresses(recipients);
@@ -37,6 +37,17 @@ class Mailer extends helper.Mail {
       personalize.addTo(recipient);
     });
     this.addPersonalization(personalize);
+  };
+
+  // converts mailer template to JSON before passing it to SendGrid to send to recipients
+  async send() {
+    const request = this.sendGridApi.emptyRequest({
+      method: "POST",
+      path: "/v3/mail/send",
+      body: this.toJSON()
+    });
+    const response = this.sendGridApi.API(request); // calls SendGrid API
+    return response;
   };
 };
 
