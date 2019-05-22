@@ -9,6 +9,11 @@ const template = require("../services/templates/template.js");
 const Survey = mongoose.model("surveys");
 
 module.exports = app => {
+  // redirect user to new route with new message after feedback is submitted
+  app.get("/api/surveys/thanks", (req, res) => {
+    res.send("Thanks for the feedback!");
+  });
+
   app.post("/api/surveys", requireLogin, requireCredits, async (req, res) => {
     const { title, subject, body, recipients } = req.body;
     const survey = new Survey({
