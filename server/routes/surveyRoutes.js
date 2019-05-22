@@ -9,7 +9,7 @@ const template = require("../services/templates/template.js");
 const Survey = mongoose.model("surveys");
 
 module.exports = app => {
-  app.post("/api/surveys", requireLogin, requireCredits, (req, res) => {
+  app.post("/api/surveys", requireLogin, requireCredits, async (req, res) => {
     const { title, subject, body, recipients } = req.body;
     const survey = new Survey({
       title, // ES2016 - title: title
@@ -22,6 +22,6 @@ module.exports = app => {
 
     // send email after survey has been created
     const mailer = new Mailer(survey, template(survey));
-    mailer.send();
+    await mailer.send();
   });
 };

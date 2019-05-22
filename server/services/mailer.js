@@ -46,7 +46,7 @@ class Mailer extends helper.Mail {
       path: "/v3/mail/send",
       body: this.toJSON()
     });
-    const response = this.sendGridApi.API(request); // calls SendGrid API
+    const response = await this.sendGridApi.API(request); // calls SendGrid API
     return response;
   };
 };
