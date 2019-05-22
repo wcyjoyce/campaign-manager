@@ -22,6 +22,15 @@ module.exports = app => {
 
     // send email after survey has been created
     const mailer = new Mailer(survey, template(survey));
-    await mailer.send();
+
+    try { // try block: catches any requests and sends back a response
+      await mailer.send();
+      await survey.save();
+      req.user.credits -= 1; // deduct credits after email has been sent
+      const user = await req.user.save();
+      res.send(user); // send back user model with updated number of credits
+    } catch (error) {
+      res.status(422).send(error); // error 422: user request is incorrect
+    };
   });
 };
