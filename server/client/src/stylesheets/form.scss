@@ -1,0 +1,22 @@
+.form {
+  .fields {
+    padding: 15px 0px;
+
+    label {
+      min-width: 125px;
+      padding: 10px 0px;
+    }
+
+    input {
+    //   border: none;
+      border-radius: 2.5px;
+      border: 1px solid #CDCDCD;
+      padding: 5px;
+      width: 25vw;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
