@@ -7,7 +7,7 @@ import * as actions from "../actions";
 import Landing from "./landing.jsx"
 import Dashboard from "./dashboard.jsx";
 import Header from "./header.jsx";
-import New from "./new.jsx";
+import New from "./surveys/new.jsx";
 
 class App extends Component {
   componentDidMount() {

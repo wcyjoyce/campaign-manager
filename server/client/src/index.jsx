@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import reduxThunk from "redux-thunk";
+import { reducer as formReducer } from "redux-form";
 
 import "./stylesheets/application.scss";
 import App from "./components/app.jsx";
@@ -14,7 +15,8 @@ import axios from "axios";
 window.axios = axios;
 
 const reducers = combineReducers({
-  auth: authReducer
+  auth: authReducer,
+  form: formReducer
 });
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
