@@ -7,7 +7,10 @@ class Form extends Component {
   renderFields() {
     return (
       <div>
-        <Field type="text" name="title" component={InputField} />
+        <Field label="Survey Title" type="text" name="title" component={InputField} />
+        <Field label="Subject Line" type="text" name="subject" component={InputField} />
+        <Field label="Email Body" type="text" name="content" component={InputField} />
+        <Field label="Recipient List" type="text" name="recipients" component={InputField} />
       </div>
     );
   };
