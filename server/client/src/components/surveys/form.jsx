@@ -27,7 +27,7 @@ class Form extends Component {
   // refactoring input fields to keep it DRY
   renderFields() {
     return _.map(FIELDS, ({ label, name }) => {
-      return <Field className="field" component={InputField} key={name} type="text" label={label} name={name} placeholder={name} />
+      return <Field component={InputField} key={name} type="text" label={label} name={name} placeholder={name} />
     });
   };
 
@@ -46,4 +46,26 @@ class Form extends Component {
   };
 };
 
-export default reduxForm({ form: "form" })(Form);
+
+// form input validation
+function validate(values) {
+  const errors = {};
+  if (!values.title) {
+    errors.title = "You must provide a title."
+  }
+
+  if (!values.subject) {
+    errors.subject = "You must provide a subject line."
+  }
+
+  if (!values.content) {
+    errors.content = "You must provide a body for your email."
+  }
+
+  if (!values.recipients) {
+    errors.recipients = "You must provide at least one email that you would like to send to."
+  }
+  return errors;
+};
+
+export default reduxForm({ validate, form: "form" })(Form);

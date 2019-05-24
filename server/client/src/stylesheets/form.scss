@@ -2,20 +2,31 @@
   .fields {
     padding: 15px 0px;
 
-    label {
-      min-width: 125px;
+    .field {
       padding: 10px 0px;
-    }
+      display: flex;
+      align-items: center;
 
-    input {
-    //   border: none;
-      border-radius: 2.5px;
-      border: 1px solid #CDCDCD;
-      padding: 5px;
-      width: 25vw;
+      .error {
+        padding: 0px 15px;
+        color: #BC0000;
+        font-size: 12px;
+      }
 
-      &:focus {
-        outline: none;
+      label {
+        min-width: 125px;
+      }
+
+      input {
+      //   border: none;
+        border-radius: 2.5px;
+        border: 1px solid #CDCDCD;
+        padding: 5px;
+        width: 25vw;
+
+        &:focus {
+          outline: none;
+        }
       }
     }
   }

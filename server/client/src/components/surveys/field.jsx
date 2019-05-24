@@ -1,11 +1,13 @@
 // import React, { Component } from "react";
 import React from "react";
 
-const InputField = ({ input, label }) => {
+// meta - further destructuring nested objects
+const InputField = ({ input, label, meta: { error, touched } }) => {
   return (
-    <div>
+    <div className="field">
       <label>{label}</label>
       <input {...input} />
+      <div className="error">{touched && error ? error : "" }</div>
     </div>
   );
 };
