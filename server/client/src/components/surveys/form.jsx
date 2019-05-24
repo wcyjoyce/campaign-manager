@@ -6,10 +6,10 @@ import _ from "lodash";
 import InputField from "./field.jsx";
 
 const FIELDS = [
-  { label: "Survey Title", name: "title" },
-  { label: "Subject Line", name: "subject" },
-  { label: "Email Body", name: "content" },
-  { label: "Recipient List", name: "recipients" }
+  { label: "Survey Title", name: "title", error: "a title" },
+  { label: "Subject Line", name: "subject", error: "an subject line" },
+  { label: "Email Body", name: "content", error: "a body for your email" },
+  { label: "Recipient List", name: "recipients", error: "at least one email that you would like this survey to" }
 ];
 
 class Form extends Component {
@@ -50,21 +50,30 @@ class Form extends Component {
 // form input validation
 function validate(values) {
   const errors = {};
-  if (!values.title) {
-    errors.title = "You must provide a title."
-  }
 
-  if (!values.subject) {
-    errors.subject = "You must provide a subject line."
-  }
+  // if (!values.title) {
+  //   errors.title = "You must provide a title."
+  // };
 
-  if (!values.content) {
-    errors.content = "You must provide a body for your email."
-  }
+  // if (!values.subject) {
+  //   errors.subject = "You must provide a subject line."
+  // };
 
-  if (!values.recipients) {
-    errors.recipients = "You must provide at least one email that you would like to send to."
-  }
+  // if (!values.content) {
+  //   errors.content = "You must provide a body for your email."
+  // };
+
+  // if (!values.recipients) {
+  //   errors.recipients = "You must provide at least one email that you would like to send to."
+  // };
+
+  // refactoring form validation
+  _.each(FIELDS, ({ name, error }) => {
+    if (!values[name]) {
+      errors[name] = `You must provide ${error}.`;
+    };
+  });
+
   return errors;
 };
 
