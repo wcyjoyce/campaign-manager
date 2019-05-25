@@ -1,32 +1,28 @@
 .form {
-  .fields {
-    padding: 15px 0px;
+  .field {
+    padding: 10px 0px;
+    display: flex;
+    align-items: center;
 
-    .field {
-      padding: 10px 0px;
-      display: flex;
-      align-items: center;
+    .error {
+      padding: 0px 15px;
+      color: #BC0000;
+      font-size: 12px;
+    }
 
-      .error {
-        padding: 0px 15px;
-        color: #BC0000;
-        font-size: 12px;
-      }
+    label {
+      min-width: 125px;
+    }
 
-      label {
-        min-width: 125px;
-      }
+    input {
+    //   border: none;
+      border-radius: 2.5px;
+      border: 1px solid #CDCDCD;
+      padding: 5px;
+      width: 25vw;
 
-      input {
-      //   border: none;
-        border-radius: 2.5px;
-        border: 1px solid #CDCDCD;
-        padding: 5px;
-        width: 25vw;
-
-        &:focus {
-          outline: none;
-        }
+      &:focus {
+        outline: none;
       }
     }
   }

@@ -1,13 +1,18 @@
 @import "header";
 @import "button";
 @import "form";
-@import "template";
+@import "review";
+@import "template"; // email template
 
-.content {
+.wrapper {
   font-family: Helvetica;
   margin: 40px;
 
   h1 {
     margin: 15px 0px;
   }
+}
+
+.content {
+  padding: 15px 0px;
 }

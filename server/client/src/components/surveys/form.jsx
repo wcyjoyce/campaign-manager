@@ -31,9 +31,9 @@ class Form extends Component {
       <div className="form">
       <h2>New Survey</h2>
       <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
-        <div className="fields">{this.renderFields()}</div>
+        <div className="content">{this.renderFields()}</div>
         <div className="field-actions">
-          <button type="submit" className="btn btn-info">Submit</button>
+          <button type="submit" className="btn btn-info">Next</button>
           <Link to="/surveys" className="btn btn-info">Cancel</Link>
         </div>
       </form>

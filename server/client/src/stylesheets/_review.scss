@@ -1,0 +1,10 @@
+.review {
+  td {
+    padding: 3px 0px;
+
+    &:first-child {
+      font-weight: bold;
+      min-width: 125px;
+    }
+  }
+}

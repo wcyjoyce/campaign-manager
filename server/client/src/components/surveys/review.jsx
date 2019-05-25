@@ -26,7 +26,7 @@ class Review extends Component {
     return (
       <div className="review">
         <h2>Please Review</h2>
-        <div className="form-content">
+        <div className="content">
           {this.reviewInput()}
         </div>
         <div className="field-actions">
