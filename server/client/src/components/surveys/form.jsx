@@ -35,7 +35,8 @@ class Form extends Component {
   render() {
     return (
       <div className="form">
-      <form onSubmit={this.props.handleSubmit(values => console.log(values))}>
+      <h2>New Survey</h2>
+      <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
         <div className="fields">{this.renderFields()}</div>
         <div className="field-actions">
           <Link to="/surveys" className="btn btn-info">Cancel</Link>
