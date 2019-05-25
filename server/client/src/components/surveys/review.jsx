@@ -6,13 +6,15 @@ import formFields from "./surveyFields.js";
 
 class Review extends Component {
   reviewInput() {
-    return _.map(formFields, field => {
+    return _.map(formFields, ({ name, label }) => {
       return (
-        <table key={field.name}>
-          <tr>
-            <td>{field.label}</td>
-            <td>{this.props.formValues[field.name]}</td>
+        <table key={name}>
+          <tbody>
+            <tr>
+              <td>{label}</td>
+              <td>{this.props.formValues[name]}</td>
           </tr>
+          </tbody>
         </table>
       );
     });
