@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { reduxForm } from "redux-form";
 
 import Form from "./form.jsx";
 import Review from "./review.jsx";
@@ -11,16 +12,13 @@ class New extends Component {
       return <Review onBack={() => this.setState({ showReview: false })}/>;
     } else {
       return <Form onSurveySubmit={() => this.setState({ showReview: true })} />;
-    }
-  }
+    };
+  };
 
   render() {
-    return (
-      <div>
-        {this.renderContent()}
-      </div>
-    );
+    return <div>{this.renderContent()}</div>
   };
 };
 
-export default New;
+// reduxForm - destroyOnUnmount: true by default
+export default reduxForm({ form: "surveyForm" })(New);
