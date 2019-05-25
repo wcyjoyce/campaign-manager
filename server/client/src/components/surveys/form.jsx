@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import _ from "lodash";
 
 import InputField from "./field.jsx";
+import validateEmails from "../../utilities/validateEmail.js";
 
 const FIELDS = [
   { label: "Survey Title", name: "title", error: "a title" },
@@ -51,20 +52,11 @@ class Form extends Component {
 function validate(values) {
   const errors = {};
 
+  // email validation
+  errors.recipients = validateEmails(values.recipients || "");
+
   // if (!values.title) {
   //   errors.title = "You must provide a title."
-  // };
-
-  // if (!values.subject) {
-  //   errors.subject = "You must provide a subject line."
-  // };
-
-  // if (!values.content) {
-  //   errors.content = "You must provide a body for your email."
-  // };
-
-  // if (!values.recipients) {
-  //   errors.recipients = "You must provide at least one email that you would like to send to."
   // };
 
   // refactoring form validation
@@ -73,6 +65,7 @@ function validate(values) {
       errors[name] = `You must provide ${error}.`;
     };
   });
+
 
   return errors;
 };
