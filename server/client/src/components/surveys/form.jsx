@@ -3,15 +3,9 @@ import { reduxForm, Field } from "redux-form";
 import { Link } from "react-router-dom";
 import _ from "lodash";
 
+import formFields from "./surveyFields.js";
 import InputField from "./field.jsx";
 import validateEmails from "../../utilities/validateEmail.js";
-
-const FIELDS = [
-  { label: "Survey Title", name: "title", error: "a title" },
-  { label: "Subject Line", name: "subject", error: "an subject line" },
-  { label: "Email Body", name: "content", error: "a body for your email" },
-  { label: "Recipient List", name: "recipients", error: "at least one email that you would like this survey to" }
-];
 
 class Form extends Component {
   // renderFields() {
@@ -27,7 +21,7 @@ class Form extends Component {
 
   // refactoring input fields to keep it DRY
   renderFields() {
-    return _.map(FIELDS, ({ label, name }) => {
+    return _.map(formFields, ({ label, name }) => {
       return <Field component={InputField} key={name} type="text" label={label} name={name} placeholder={name} />
     });
   };
@@ -39,8 +33,8 @@ class Form extends Component {
       <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
         <div className="fields">{this.renderFields()}</div>
         <div className="field-actions">
-          <Link to="/surveys" className="btn btn-info">Cancel</Link>
           <button type="submit" className="btn btn-info">Submit</button>
+          <Link to="/surveys" className="btn btn-info">Cancel</Link>
         </div>
       </form>
       </div>
@@ -61,7 +55,7 @@ function validate(values) {
   // };
 
   // refactoring form validation
-  _.each(FIELDS, ({ name, error }) => {
+  _.each(formFields, ({ name, error }) => {
     if (!values[name]) {
       errors[name] = `You must provide ${error}.`;
     };
@@ -71,4 +65,5 @@ function validate(values) {
   return errors;
 };
 
-export default reduxForm({ validate, form: "form" })(Form);
+// destroyOnUnmount: destroys input values when component has been unmounted
+export default reduxForm({ validate, form: "surveyForm", destroyOnUnmount: false })(Form);
