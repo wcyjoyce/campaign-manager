@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom"; // allows redirecting after survey has been submitted
 import _ from "lodash";
 
 import formFields from "./surveyFields.js";
+import * as actions from "../../actions";
 
 class Review extends Component {
   reviewInput() {
@@ -28,8 +30,8 @@ class Review extends Component {
           {this.reviewInput()}
         </div>
         <div className="field-actions">
+          <button className="btn btn-success" onClick={() => this.props.submitSurvey(this.props.formValues, this.props.history )}>Submit</button>
           <button className="btn btn-warning" onClick={this.props.onBack}>Back</button>
-          <button className="btn btn-success">Submit</button>
         </div>
       </div>
     );
@@ -40,4 +42,4 @@ function mapStateToProps(state) {
   return { formValues: state.form.surveyForm.values };
 };
 
-export default connect(mapStateToProps)(Review);
+export default connect(mapStateToProps, actions)(withRouter(Review));

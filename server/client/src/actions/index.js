@@ -8,13 +8,19 @@ export const fetchUser = () => {
   };
 };
 
-export const handlePaymentToken = token => async dispatch => {
-  const response = await axios.post("/api/stripe", token); // response when Stripe token is successfully authenticated
-  dispatch({ type: FETCH_USER, payload: response.data }); // sends back the same user (but with updated credits)
-}
-
 // Refactoring with Async/Await
 // export const fetchUser = () => async dispatch => {
 //   const response = await axios.get("/api/current_user");
 //   dispatch({ type: FETCH_USER, payload: response.data });
 // };
+
+export const handlePaymentToken = token => async dispatch => {
+  const response = await axios.post("/api/stripe", token); // response when Stripe token is successfully authenticated
+  dispatch({ type: FETCH_USER, payload: response.data }); // sends back the same user (but with updated credits)
+};
+
+export const submitSurvey = (values, history) => async dispatch => {
+  const response = await axios.post("/api/surveys", values);
+  history.push("/surveys"); // redirects user to dashboard after survey is submitted
+  dispatch({ type: FETCH_USER, payload: response.data });
+};
