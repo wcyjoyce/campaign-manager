@@ -1,3 +1,6 @@
+const _ = require("lodash");
+const Path = require("path-parser");
+const { URL } = require("url");
 const mongoose = require("mongoose"); // requiring Mongoose to access Mongoose model classes
 const requireLogin = require("../middlewares/requireLogin.js"); // to make sure user is logged in
 const requireCredits = require("../middlewares/requireCredits.js"); // to make sure that user has enough credits
@@ -16,7 +19,18 @@ module.exports = app => {
 
   // getting feedback from SendGrid via webhooks
   app.post("/api/surveys/webhooks", (req, res) => {
-    console.log(req.body);
+    const events = _.map(req.body, (event) => {
+      const pathname = new URL(event.url).pathname; // retrieves path of URL that has been clicked
+      const path = new Path("/api/surveys/:surveyId/:choice"); // extracts survey ID and choice (ie. yes/no)
+      const match = path.test(pathname);
+      if (match) {
+        return { email: event.email, surveyId: match.surveyId, choice: match.choice };
+      };
+    });
+
+    const compactEvents = _.compact(events); // "compact" - takes an array and removes any elements within the array that is undefined
+    const uniqueEvents = _.uniqBy(compactEvents, "email", "surveyId"); // "uniqBy" - removes duplicates in the "email" and "surveyId" properties
+    console.log(uniqueEvents);
     res.send({});
   });
 
