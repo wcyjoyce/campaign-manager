@@ -19,19 +19,30 @@ module.exports = app => {
 
   // getting feedback from SendGrid via webhooks
   app.post("/api/surveys/webhooks", (req, res) => {
-    const events = _.map(req.body, (event) => {
-      const pathname = new URL(event.url).pathname; // retrieves path of URL that has been clicked
-      const path = new Path("/api/surveys/:surveyId/:choice"); // extracts survey ID and choice (ie. yes/no)
-      const match = path.test(pathname);
-      if (match) {
-        return { email: event.email, surveyId: match.surveyId, choice: match.choice };
-      };
-    });
+    // const events = _.map(req.body, (event) => {
+    //   const pathname = new URL(event.url).pathname; // retrieves path of URL that has been clicked
+    //   const pathHelper = new Path("/api/surveys/:surveyId/:choice"); // extracts survey ID and choice (ie. yes/no)
+    //   const match = pathHelper.test(pathname);
+    //   if (match) {
+    //     return { email: event.email, surveyId: match.surveyId, choice: match.choice };
+    //   };
+    // });
 
-    const compactEvents = _.compact(events); // "compact" - takes an array and removes any elements within the array that is undefined
-    const uniqueEvents = _.uniqBy(compactEvents, "email", "surveyId"); // "uniqBy" - removes duplicates in the "email" and "surveyId" properties
+    // refactoring with Lodash chain helper
+    const pathHelper = new Path("/api/surveys/:surveyId/:choice"); // extracts survey ID and choice (ie. yes/no)
+
+    const uniqueEvents = _.chain(req.body)
+      .map((event) => {
+        const match = pathHelper.test(new URL(event.url).pathname);
+        if (match) {
+          return { email: event.email, surveyId: match.surveyId, choice: match.choice };
+        };
+      })
+    .compact() // "compact" - takes an array and removes any elements within the array that is undefined
+    .uniqBy("email", "surveyId") // "uniqBy" - removes duplicates in the "email" and "surveyId" properties
+    .value();
+
     console.log(uniqueEvents);
-    res.send({});
   });
 
   app.post("/api/surveys", requireLogin, requireCredits, async (req, res) => {
