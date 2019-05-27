@@ -5,20 +5,30 @@ import { Link } from "react-router-dom";
 import Stripe from "./stripe.jsx";
 
 class Header extends Component {
+  state = { colour: "#FFE019" };
+
+  changeColour = (event) => {
+    window.scrollY > 437 ? this.setState({ colour: "white" }) : this.setState({ colour: "#FFE019" });
+  };
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.changeColour);
+  };
+
   renderContent() {
     switch (this.props.auth) {
       case null:
         return; // shows nothing
       case false:
         return (
-          <a href="/auth/google" className="btn btn-danger"><i className="fa fa-google"/>Sign In with Google</a>
+          <a href="/auth/google" className="btn"><i className="fa fa-google"/>Sign In</a>
         );
       default:
         return (
           <div>
+            <div className="btn">{this.props.auth.credits ? "Credits: " + this.props.auth.credits : "" }</div>
             <Stripe />
-            {/*<div className="btn btn-success">Credits: {this.props.auth.credits}</div>*/}
-            <a href="/api/logout" className="btn btn-danger"><i className="fa fa-sign-out" />Sign Out</a>
+            <a href="/api/logout" className="btn">Sign Out</a>
           </div>
         );
     };
@@ -26,8 +36,8 @@ class Header extends Component {
 
   render() {
     return (
-      <div className="header">
-        <Link to={this.props.auth ? "/surveys" : "/"}><h1>Campaign Manager</h1></Link>
+      <div className="header" style={{ background: this.state.colour }}>
+        <Link to={this.props.auth ? "/surveys" : "/"}><h1><i className="fa fa-paper-plane" />Campaign Manager</h1></Link>
         {this.renderContent()}
       </div>
     );
