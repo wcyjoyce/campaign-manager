@@ -1,5 +1,16 @@
 .btn {
-  font-weight: bold;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 800;
+  color: white;
+  background: #007C89;
+  border-radius: 0px;
+  border: #1E474E;
+  padding: 10px 20px;
+
+  &:hover {
+    background: #1E474E;
+    color: white;
+  }
 
   .fa {
     margin-right: 10px;
@@ -8,6 +19,4 @@
   &:first-child, &:nth-child(2) {
     margin-right: 10px;
   }
-
-
 }

@@ -2,12 +2,31 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0px;
+  background: #FFE019;
+  padding: 30px 50px;
+
+  .fa {
+    margin-right: 15px;
+  }
 
   a, a:hover {
     text-decoration: none;
 
     h1 {
+      font-family: "Lato", sans-serif;
+      letter-spacing: 2.5px;
+      font-size: 28px;
       color: black;
+      margin: 0px;
+      padding: 10px 0px;
+      font-weight: 900;
+      text-transform: uppercase;
+
+      &:hover {
+        color: #1E474E;
+      }
     }
   }
 }
