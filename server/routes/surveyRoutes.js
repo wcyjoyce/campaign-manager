@@ -12,9 +12,14 @@ const template = require("../services/templates/template.js");
 const Survey = mongoose.model("surveys");
 
 module.exports = app => {
+  // Loading properties available in user dashboard
+  app.get("/api/surveys", requireLogin, async (req, res) => {
+    const surveys = await Survey.find({ _user: req.user.id }).select({ recipients: false }); // find all surveys by user
+    res.send(surveys);
+  });
 
   // Redirect user to new route with new message after feedback is submitted
-  app.get("/api/surveys/thanks", (req, res) => {
+  app.get("/api/surveys/:surveyId/:choice", (req, res) => {
     res.send("Thanks for the feedback!");
   });
 
@@ -49,7 +54,8 @@ module.exports = app => {
         }
       }, {
         $inc: { [choice]: 1 }, // $inc = increment (MongoDB syntax) / increment "choice" property by 1
-        $set: { "recipients.$.responded": true } // $set = update (MongoDB syntax) / recipients.$ = specific recipient
+        $set: { "recipients.$.responded": true }, // $set = update (MongoDB syntax) / recipients.$ = specific recipient
+        lastResponded: new Date()
       })
     }).exec() // executes the function and sends it to the database
     .value();
