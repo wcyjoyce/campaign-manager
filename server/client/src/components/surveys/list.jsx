@@ -9,7 +9,7 @@ class List extends Component {
   };
 
   renderList() {
-    return this.props.surveys.map(survey => {
+    return this.props.surveys.reverse().map(survey => {
       return (
         <div className="survey" key={survey._id}>
           <div>Title: {survey.title}</div>
