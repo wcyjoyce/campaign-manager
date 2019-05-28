@@ -12,10 +12,15 @@ class List extends Component {
     return this.props.surveys.reverse().map(survey => {
       return (
         <div className="survey" key={survey._id}>
-          <div>Title: {survey.title}</div>
-          <div>Body: {survey.body}</div>
-          <div>Sent on: {new Date(survey.dateSent).toLocaleDateString()}</div>
-          <div>Yes: {survey.yes} | No: {survey.no}</div>
+          <div className="title">{survey.title}</div>
+          <div className="body">{survey.body}</div>
+          <div className="footer">
+            <div className="responses">
+              <span className="response"><i className="fa fa-check" />{survey.yes}</span>
+              <span className="response"><i className="fa fa-times" />{survey.no}</span>
+            </div>
+            <div className="date">{new Date(survey.dateSent).toLocaleDateString()}</div>
+          </div>
         </div>
       );
     })
@@ -24,8 +29,8 @@ class List extends Component {
   render() {
     return (
       <div>
-        <h3>Surveys</h3>
-        {this.renderList()}
+        <h3>Your Surveys</h3>
+        <div className="surveys">{this.renderList()}</div>
       </div>
     );
   };

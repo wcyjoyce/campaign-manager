@@ -7,11 +7,10 @@ import List from "./surveys/list.jsx";
 class Dashboard extends Component {
   render() {
     return (
-      <div>
+      <div className="dashboard">
         <h2>Dashboard</h2>
-        <h4>Credits: {this.props.auth.credits}</h4>
-        <div className="content"><List /></div>
-        <Link to="/surveys/new" className="btn btn-danger"><i className="fa fa-plus"/>Add Survey</Link>
+        <p>Hello!</p>
+        <List />
       </div>
     );
   };
