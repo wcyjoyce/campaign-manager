@@ -1,4 +1,3 @@
-// import React, { Component } from "react";
 import React from "react";
 
 // meta - further destructuring nested objects

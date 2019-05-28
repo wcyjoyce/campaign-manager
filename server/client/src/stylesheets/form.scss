@@ -1,29 +1,38 @@
 .form {
-  .field {
-    padding: 10px 0px;
-    display: flex;
-    align-items: center;
+  padding: 0px 50px;
 
-    .error {
-      padding: 0px 15px;
-      color: #BC0000;
-      font-size: 12px;
-    }
+  form {
+    margin: 20px 0px;
 
-    label {
-      min-width: 125px;
-    }
+    .field {
+      padding: 10px 0px;
+      display: flex;
+      align-items: center;
 
-    input {
-    //   border: none;
-      border-radius: 2.5px;
-      border: 1px solid #CDCDCD;
-      padding: 5px;
-      width: 25vw;
-
-      &:focus {
-        outline: none;
+      .error {
+        padding: 0px 15px;
+        color: #BC0000;
+        font-size: 12px;
       }
+
+      label {
+        min-width: 150px;
+      }
+
+      input {
+        border: 1px solid #1E474E;
+        padding: 5px;
+        width: 25vw;
+        background: transparent;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    .field-actions {
+      padding: 15px 0px;
     }
   }
 }
