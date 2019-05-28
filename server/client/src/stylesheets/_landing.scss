@@ -1,0 +1,66 @@
+.landing {
+  font-weight: 300;
+
+  .headline {
+    padding: 35px 100px;
+
+    h1 {
+      font-size: 60px;
+      // font-weight: 300;
+      margin: 0px;
+      padding: 15px 0px;
+    }
+
+    h3 {
+      font-weight: 300;
+      margin: 0px;
+      padding: 20px 0px;
+      font-size: 28px;
+      line-height: 1.5;
+    }
+
+    .btn {
+      font-size: 16px;
+      padding: 20px 25px;
+      margin: 10px 0px;
+    }
+  }
+
+  .detail {
+    background: white;
+    padding: 75px 50px;
+    text-align: center;
+
+    h1 {
+      margin: 0px;
+      padding: 20px 0px;
+      font-weight: 300;
+    }
+
+    .features {
+      padding: 25px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 20px;
+
+      .feature {
+        padding: 0px 40px;
+
+        .fa {
+          font-size: 65px;
+          padding: 15px 0px;
+        }
+
+        .title {
+          font-size: 20px;
+          padding: 15px 0px;
+        }
+
+        .description {
+          padding: 15px 0px;
+          color: #1E474E;
+        }
+      }
+    }
+  }
+}
