@@ -29,6 +29,7 @@ class Header extends Component {
             <div className="btn-three">Credits: {this.props.auth.credits}</div>
             <Link to="/surveys/new" className="btn-alt"><i className="fa fa-plus"/>Add Survey</Link>
             <Stripe />
+            <div><Link to="/surveys" className="btn">Dashboard</Link></div>
             <a href="/api/logout" className="btn">Sign Out</a>
           </div>
         );
