@@ -25,8 +25,9 @@ class Header extends Component {
         );
       default:
         return (
-          <div>
-            <div className="btn">{this.props.auth.credits ? "Credits: " + this.props.auth.credits : "" }</div>
+          <div className="right">
+            <div className="btn-three">Credits: {this.props.auth.credits}</div>
+            <Link to="/surveys/new" className="btn-alt"><i className="fa fa-plus"/>Add Survey</Link>
             <Stripe />
             <a href="/api/logout" className="btn">Sign Out</a>
           </div>

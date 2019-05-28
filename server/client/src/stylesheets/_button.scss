@@ -1,11 +1,17 @@
-.btn {
+.btn, .btn-alt, .btn-three {
   font-family: "Nunito Sans", sans-serif;
+  border-radius: 0px;
+  padding: 10px 20px;
+
+  &:first-child, &:nth-child(2) {
+    margin-right: 15px;
+  }
+}
+
+.btn {
   font-weight: 800;
   color: white;
   background: #007C89;
-  border-radius: 0px;
-  border: #1E474E;
-  padding: 10px 20px;
 
   &:hover {
     background: #1E474E;
@@ -15,8 +21,15 @@
   .fa {
     margin-right: 10px;
   }
+}
 
-  &:first-child, &:nth-child(2) {
-    margin-right: 10px;
+.btn-alt {
+  background: transparent;
+  border: 1px #1E474E solid;
+  color: black;
+
+  &:hover {
+    color: #1E474E;
+    border: 1px solid #1E474E;
   }
 }

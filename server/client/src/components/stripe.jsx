@@ -13,7 +13,7 @@ class Stripe extends Component {
         token={token => this.props.handlePaymentToken(token)} // authorisation token (representing the charge) after successful callback from Stripe's API
         stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}
       >
-      <button className="btn btn-primary">Add Credits</button>
+      <button className="btn-alt">Add Credits</button>
       </StripeCheckout>
     );
   };
