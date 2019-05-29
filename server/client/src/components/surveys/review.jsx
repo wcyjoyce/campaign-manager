@@ -30,8 +30,8 @@ class Review extends Component {
           {this.reviewInput()}
         </div>
         <div className="field-actions">
-          <button className="btn btn-success" onClick={() => this.props.submitSurvey(this.props.formValues, this.props.history )}>Submit</button>
-          <button className="btn btn-warning" onClick={this.props.onBack}>Back</button>
+          <button className="btn" onClick={() => this.props.submitSurvey(this.props.formValues, this.props.history )}>Submit</button>
+          <button className="btn" onClick={this.props.onBack}>Back</button>
         </div>
       </div>
     );

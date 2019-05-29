@@ -1,10 +1,20 @@
 .review {
-  td {
-    padding: 3px 0px;
+  padding: 0px 50px;
 
-    &:first-child {
-      font-weight: bold;
-      min-width: 125px;
+  .content {
+    margin: 20px 0px;
+
+    td {
+      padding: 5px 0px;
+
+      &:first-child {
+        font-weight: bold;
+        min-width: 150px;
+      }
     }
+  }
+
+  .field-actions {
+    padding: 15px 0px;
   }
 }
