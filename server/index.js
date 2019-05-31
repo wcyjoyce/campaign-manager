@@ -46,9 +46,9 @@ require("./routes/surveyRoutes.js")(app);
   // 4) req - represents the incoming request
   // 5) res - represents the outgoing response
   // 6) res.send - close the request and send back a JSON response
-app.get("/", (req, res) => {
-  res.send({ hi: "there" });
-});
+// app.get("/", (req, res) => {
+//   res.send({ hi: "there" });
+// });
 
 // For Heroku: Express will serve up production assets (eg. main.js / main.css), otherwise, index.html will be served
 if (process.env.NODE_ENV === "production") {
