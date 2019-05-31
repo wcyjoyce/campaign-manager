@@ -33,3 +33,25 @@
     border: 1px solid #1E474E;
   }
 }
+
+.btn-large {
+  width: 50%;
+  background: #FFE019;
+  font-size: 32px;
+  font-weight: 800;
+  font-family: "Nunito Sans", sans-serif;
+  padding: 30px 60px;
+  margin: 25px auto;
+
+  &:hover {
+    cursor: pointer;
+    background: #EABE8D;
+    text-decoration: none;
+    color: black;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}

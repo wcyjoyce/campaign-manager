@@ -37,6 +37,7 @@ class Landing extends Component {
           <div className="features">
             {this.renderFeature()}
           </div>
+          <div className="btn-large"><a href="/auth/google">Sign Up</a></div>
         </div>
       </div>
     );
